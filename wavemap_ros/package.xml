@@ -16,6 +16,8 @@
   <depend>Boost</depend>
 
   <depend>wavemap</depend>
+  <depend>wavemap_ros_conversions</depend>
+  <depend>wavemap_msgs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
