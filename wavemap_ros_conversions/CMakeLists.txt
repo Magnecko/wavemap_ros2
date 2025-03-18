@@ -7,9 +7,33 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(wavemap)
+find_package(Eigen3 REQUIRED)
+find_package(Boost REQUIRED)
+find_package(tf2_eigen REQUIRED)
+# find_package(eigen_conversions REQUIRED)
+# find_package(wavemap_msgs REQUIRED)
+
+add_library(${PROJECT_NAME} SHARED
+  src/test_include.cpp
+  # src/config_conversions.cpp
+  # src/map_msg_conversions.cpp
+  # src/time_conversions.cpp
+  )
+# set_wavemap_target_properties(${PROJECT_NAME})
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+ament_target_dependencies(${PROJECT_NAME}
+  rclcpp
+  wavemap
+  Eigen3
+  Boost
+  tf2_eigen
+  # eigen_conversions
+  # wavemap_msgs
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
