@@ -16,8 +16,7 @@ find_package(wavemap_msgs REQUIRED)
 # find_package(eigen_conversions REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
-  src/test_include.cpp
-  # src/config_conversions.cpp
+  src/config_conversions.cc
   src/map_msg_conversions.cc
   src/time_conversions.cc
   )

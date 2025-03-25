@@ -5,16 +5,16 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <wavemap/core/config/config_base.h>
-// #include <xmlrpcpp/XmlRpcValue.h> #TODO load params for ROS2 properly (elliot.irving)
+#include <xmlrpcpp/XmlRpcValue.h>
 
 namespace wavemap::param::convert {
 param::Map toParamMap(const rclcpp::Node::SharedPtr& node, const std::string& ns);
 param::Array toParamArray(const rclcpp::Node::SharedPtr& node, const std::string& ns);
 param::Value toParamValue(const rclcpp::Node::SharedPtr& node, const std::string& ns);
 
-// param::Map toParamMap(const XmlRpc::XmlRpcValue& xml_rpc_value);
-// param::Array toParamArray(const XmlRpc::XmlRpcValue& xml_rpc_value);
-// param::Value toParamValue(const XmlRpc::XmlRpcValue& xml_rpc_value);
+param::Map toParamMap(const XmlRpc::XmlRpcValue& xml_rpc_value);
+param::Array toParamArray(const XmlRpc::XmlRpcValue& xml_rpc_value);
+param::Value toParamValue(const XmlRpc::XmlRpcValue& xml_rpc_value);
 }  // namespace wavemap::param::convert
 
 #endif  // WAVEMAP_ROS_CONVERSIONS_CONFIG_CONVERSIONS_H_
