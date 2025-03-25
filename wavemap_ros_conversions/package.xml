@@ -17,7 +17,6 @@
   <depend>tf2_eigen</depend>
   <depend>wavemap_msgs</depend>
   <depend>xmlrpcpp</depend>
-  <!-- <depend>eigen_conversions</depend> -->
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -14,7 +14,6 @@ find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED)
 find_package(tf2_eigen REQUIRED)
 find_package(wavemap_msgs REQUIRED)
-# find_package(eigen_conversions REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   src/config_conversions.cc
@@ -33,7 +32,6 @@ ament_target_dependencies(${PROJECT_NAME}
   Boost
   tf2_eigen
   wavemap_msgs
-  # eigen_conversions
 )
 
 if(BUILD_TESTING)
