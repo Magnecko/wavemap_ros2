@@ -1,15 +1,9 @@
 #ifndef WAVEMAP_ROS_CONVERSIONS_GEOMETRY_MSG_CONVERSIONS_H_
 #define WAVEMAP_ROS_CONVERSIONS_GEOMETRY_MSG_CONVERSIONS_H_
 
-#include <tf2_eigen/tf2_eigen.hpp> // Used to be eigen_conversions/eigen_msg.h
-#include <geometry_msgs/msg/point32.h>
-
-// TODO (elliot.irving) confirm if .hpp or .h needed
-// #include <geometry_msgs/msg/point.hpp>
+// Note: headers used to be .h but could only build with .hpp
+#include <tf2_eigen/tf2_eigen.hpp>
 #include <geometry_msgs/msg/point32.hpp>
-// #include <geometry_msgs/msg/vector3.hpp>
-// #include <geometry_msgs/msg/quaternion.hpp>
-// #include <geometry_msgs/msg/transform.hpp>
 #include <tf2_eigen/tf2_eigen.hpp>
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -44,11 +38,6 @@ inline Vector3D vector3MsgToVector3D(const geometry_msgs::msg::Vector3& msg) {
   return vector_double.cast<FloatingPoint>();
 }
 
-// inline geometry_msgs::Vector3 vector3DToVector3Msg(const Vector3D& vector) {
-  // geometry_msgs::Vector3 msg;
-  // tf::vectorEigenToMsg(vector.cast<double>(), msg);
-  // return msg;
-// }
 inline geometry_msgs::msg::Vector3 vector3DToVector3Msg(const Vector3D& vector) {
   geometry_msgs::msg::Vector3 msg;
   msg.x = vector.x();
