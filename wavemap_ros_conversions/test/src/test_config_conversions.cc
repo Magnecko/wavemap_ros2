@@ -2,13 +2,6 @@
 #include <xmlrpcpp/XmlRpcValue.h>
 #include "wavemap_ros_conversions/config_conversions.h"
 
-// For the purposes of these tests, we assume that:
-// - param::Map is comparable (or at least we can check its emptiness)
-// - param::Array is a container that supports size() and element access
-// - param::Value has an interface similar to a variant, with a get<T>() member
-//   and equality operators defined.
-// You may need to adjust these tests to match your actual API.
-
 using namespace wavemap::param::convert;
 
 TEST(ConfigConversionsTest, ToParamMap_InvalidTypeReturnsEmptyMap) {
@@ -79,16 +72,11 @@ TEST(ConfigConversionsTest, ToParamValue_StructConversion) {
   EXPECT_EQ(m["b"].get<std::string>(), "hello");
 }
 
-// Optionally, if you can simulate a Base64 type (if your XmlRpc++ supports it),
-// you might add a test for that. Otherwise, you can note that unsupported types
-// result in an error log and an empty array:
+// Base64 unsupported types results in an error log and an empty array:
 TEST(ConfigConversionsTest, ToParamValue_UnsupportedBase64ReturnsEmptyArray) {
-  // If you can manually set a value's type to Base64, do so.
-  // Here, we simulate by creating an XmlRpcValue and then forcing its type.
   XmlRpc::XmlRpcValue val;
   val.setType(XmlRpc::XmlRpcValue::TypeBase64);
   param::Value result = toParamValue(val);
-  // The code returns an empty param::Array on error.
   auto arr = result.get<param::Array>();
   EXPECT_TRUE(arr.empty());
 }
