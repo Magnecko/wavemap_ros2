@@ -8,6 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(xmlrpcpp REQUIRED)
 find_package(wavemap)
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED)
@@ -26,6 +27,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:include>)
 ament_target_dependencies(${PROJECT_NAME}
   rclcpp
+  xmlrpcpp
   wavemap
   Eigen3
   Boost

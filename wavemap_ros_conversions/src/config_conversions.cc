@@ -91,7 +91,7 @@ param::Value toParamValue(  // NOLINT
       break;
     case XmlRpc::XmlRpcValue::TypeBase64:
       RCLCPP_ERROR(rclcpp::get_logger("wavemap_ros_conversions"),
-          "Encountered a binary data field when parsing ROS paramsThese "
+          "Encountered a binary data field when parsing ROS params. These "
           "are not yet supported and will be ignored.");
       break;
     default:
