@@ -18,8 +18,8 @@ find_package(wavemap_msgs REQUIRED)
 add_library(${PROJECT_NAME} SHARED
   src/test_include.cpp
   # src/config_conversions.cpp
-  # src/map_msg_conversions.cpp
-  # src/time_conversions.cpp
+  src/map_msg_conversions.cc
+  src/time_conversions.cc
   )
 # set_wavemap_target_properties(${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PUBLIC
