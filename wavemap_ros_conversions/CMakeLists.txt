@@ -12,8 +12,8 @@ find_package(wavemap)
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED)
 find_package(tf2_eigen REQUIRED)
+find_package(wavemap_msgs REQUIRED)
 # find_package(eigen_conversions REQUIRED)
-# find_package(wavemap_msgs REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   src/test_include.cpp
@@ -31,8 +31,8 @@ ament_target_dependencies(${PROJECT_NAME}
   Eigen3
   Boost
   tf2_eigen
+  wavemap_msgs
   # eigen_conversions
-  # wavemap_msgs
 )
 
 if(BUILD_TESTING)
