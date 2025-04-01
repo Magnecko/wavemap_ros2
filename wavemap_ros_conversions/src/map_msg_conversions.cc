@@ -6,7 +6,7 @@
 #include <string>
 #include <unordered_set>
 
-#include <ros/console.h>
+#include <rclcpp/rclcpp.hpp>
 #include <wavemap/core/utils/profile/profiler_interface.h>
 
 namespace wavemap::convert {
@@ -42,7 +42,7 @@ bool mapToRosMsg(const MapBase& map, const std::string& frame_id,
     return true;
   }
 
-  ROS_WARN(
+  RCLCPP_WARN(rclcpp::get_logger("wavemap_ros_conversions"),
       "Could not serialize requested map to ROS msg. "
       "Map type not yet supported.");
   return false;
@@ -73,7 +73,7 @@ bool rosMsgToMap(const wavemap_msgs::msg::Map& msg, MapBase::Ptr& map) {
     is_valid = false;
   }
   if (!is_valid) {
-    ROS_WARN_STREAM(error_msg + "Ignoring.");
+    RCLCPP_WARN(rclcpp::get_logger("wavemap_ros_conversions"), "%s", (error_msg + "Ignoring.").c_str());
     map = nullptr;
     return false;
   }
@@ -99,7 +99,7 @@ bool rosMsgToMap(const wavemap_msgs::msg::Map& msg, MapBase::Ptr& map) {
     return true;
   }
 
-  ROS_WARN(
+  RCLCPP_WARN(rclcpp::get_logger("wavemap_ros_conversions"),
       "Conversion of the requested map ROS msg to a wavemap map is "
       "not yet supported.");
   map = nullptr;

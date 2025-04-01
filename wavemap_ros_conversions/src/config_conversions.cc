@@ -44,7 +44,10 @@ param::Map toParamMap(  // NOLINT
   }
 
   param::Map param_map;
-  for (const auto& kv : xml_rpc_value) {
+
+  XmlRpc::XmlRpcValue mutable_value = xml_rpc_value;
+
+  for (auto& kv : mutable_value) {
     param_map.emplace(kv.first, toParamValue(kv.second));
   }
   return param_map;
@@ -66,20 +69,23 @@ param::Array toParamArray(  // NOLINT
 }
 
 param::Value toParamValue(  // NOLINT
-    const XmlRpc::XmlRpcValue& xml_rpc_value) {
-  switch (xml_rpc_value.getType()) {
+    XmlRpc::XmlRpcValue& xml_rpc_value) {
+
+  XmlRpc::XmlRpcValue mutable_value = xml_rpc_value;
+
+  switch (mutable_value.getType()) {
     case XmlRpc::XmlRpcValue::TypeBoolean:
-      return param::Value(static_cast<bool>(xml_rpc_value));
+      return param::Value(static_cast<bool>(mutable_value));
     case XmlRpc::XmlRpcValue::TypeInt:
-      return param::Value(static_cast<int>(xml_rpc_value));
+      return param::Value(static_cast<int>(mutable_value));
     case XmlRpc::XmlRpcValue::TypeDouble:
-      return param::Value(static_cast<double>(xml_rpc_value));
+      return param::Value(static_cast<double>(mutable_value));
     case XmlRpc::XmlRpcValue::TypeString:
-      return param::Value(static_cast<std::string>(xml_rpc_value));
+      return param::Value(static_cast<std::string>(mutable_value));
     case XmlRpc::XmlRpcValue::TypeArray:
-      return param::Value(toParamArray(xml_rpc_value));
+      return param::Value(toParamArray(mutable_value));
     case XmlRpc::XmlRpcValue::TypeStruct:
-      return param::Value(toParamMap(xml_rpc_value));
+      return param::Value(toParamMap(mutable_value));
     case XmlRpc::XmlRpcValue::TypeInvalid:
       RCLCPP_ERROR(rclcpp::get_logger("wavemap_ros_conversions"), 
           "Encountered invalid type while parsing ROS params.");
